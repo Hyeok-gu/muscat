@@ -95,7 +95,7 @@ const Home = () => {
 
   // 스타일
   const [listUp, setListUp] = useState(false);
-  const [listDelete, setListDelete] = useState(false);
+  // const [listDelete, setListDelete] = useState(false);
   const [iconAction, setIconAction] = useState(false);
   const [backgroundType, setBackgroundType] = useState('default');
   const [inputType, setInputType] = useState('default');
