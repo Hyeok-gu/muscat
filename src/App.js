@@ -1,11 +1,12 @@
-import ToDoForm from './Component/ToDoForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './routes/Home';
+
 function App() {
-  return (
-    <div className="App">
-      <ToDoForm />
-      <ToDoForm />
-    </div>
-  );
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  </Router>;
 }
 
 export default App;
