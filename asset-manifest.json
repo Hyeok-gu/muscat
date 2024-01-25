@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Muscat/static/css/main.e0a03671.css",
-    "main.js": "/Muscat/static/js/main.60befef0.js",
-    "static/media/GmarketSansBold.woff": "/Muscat/static/media/GmarketSansBold.d7424b5213df834a6dcf.woff",
-    "static/media/GmarketSansMedium.woff": "/Muscat/static/media/GmarketSansMedium.84f61a83d44ae10d8d73.woff",
-    "static/media/GmarketSansLight.woff": "/Muscat/static/media/GmarketSansLight.8249d9d779ebb0333d5f.woff",
-    "static/media/GmarketSansBold.woff2": "/Muscat/static/media/GmarketSansBold.618ccfc9169f3ed4efd4.woff2",
-    "static/media/GmarketSansMedium.woff2": "/Muscat/static/media/GmarketSansMedium.8e9eca0b5b938c057b55.woff2",
-    "static/media/GmarketSansLight.woff2": "/Muscat/static/media/GmarketSansLight.5b0b57b678f405027dbf.woff2",
-    "index.html": "/Muscat/index.html",
-    "main.e0a03671.css.map": "/Muscat/static/css/main.e0a03671.css.map",
-    "main.60befef0.js.map": "/Muscat/static/js/main.60befef0.js.map"
+    "main.css": "/muscat/static/css/main.1fec6c5a.css",
+    "main.js": "/muscat/static/js/main.d20c7fbd.js",
+    "static/media/GmarketSansBold.woff": "/muscat/static/media/GmarketSansBold.d7424b5213df834a6dcf.woff",
+    "static/media/GmarketSansMedium.woff": "/muscat/static/media/GmarketSansMedium.84f61a83d44ae10d8d73.woff",
+    "static/media/GmarketSansLight.woff": "/muscat/static/media/GmarketSansLight.8249d9d779ebb0333d5f.woff",
+    "static/media/GmarketSansBold.woff2": "/muscat/static/media/GmarketSansBold.618ccfc9169f3ed4efd4.woff2",
+    "static/media/GmarketSansMedium.woff2": "/muscat/static/media/GmarketSansMedium.8e9eca0b5b938c057b55.woff2",
+    "static/media/GmarketSansLight.woff2": "/muscat/static/media/GmarketSansLight.5b0b57b678f405027dbf.woff2",
+    "index.html": "/muscat/index.html",
+    "main.1fec6c5a.css.map": "/muscat/static/css/main.1fec6c5a.css.map",
+    "main.d20c7fbd.js.map": "/muscat/static/js/main.d20c7fbd.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0a03671.css",
-    "static/js/main.60befef0.js"
+    "static/css/main.1fec6c5a.css",
+    "static/js/main.d20c7fbd.js"
   ]
 }
