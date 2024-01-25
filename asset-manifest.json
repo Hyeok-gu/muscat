@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Muscat/static/css/main.e0a03671.css",
-    "main.js": "/Muscat/static/js/main.5b9008d2.js",
+    "main.js": "/Muscat/static/js/main.60befef0.js",
     "static/media/GmarketSansBold.woff": "/Muscat/static/media/GmarketSansBold.d7424b5213df834a6dcf.woff",
     "static/media/GmarketSansMedium.woff": "/Muscat/static/media/GmarketSansMedium.84f61a83d44ae10d8d73.woff",
     "static/media/GmarketSansLight.woff": "/Muscat/static/media/GmarketSansLight.8249d9d779ebb0333d5f.woff",
@@ -10,10 +10,10 @@
     "static/media/GmarketSansLight.woff2": "/Muscat/static/media/GmarketSansLight.5b0b57b678f405027dbf.woff2",
     "index.html": "/Muscat/index.html",
     "main.e0a03671.css.map": "/Muscat/static/css/main.e0a03671.css.map",
-    "main.5b9008d2.js.map": "/Muscat/static/js/main.5b9008d2.js.map"
+    "main.60befef0.js.map": "/Muscat/static/js/main.60befef0.js.map"
   },
   "entrypoints": [
     "static/css/main.e0a03671.css",
-    "static/js/main.5b9008d2.js"
+    "static/js/main.60befef0.js"
   ]
 }
