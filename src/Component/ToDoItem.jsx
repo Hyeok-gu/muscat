@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Delete } from './icons';
-import CheckBtn from './CheckBtn';
+import styled from "styled-components";
+import { IcoDelete } from "./icons";
+import CheckBtn from "./CheckBtn";
 
 const Item = styled.li`
   height: 56px;
@@ -55,7 +55,7 @@ const ToDoItem = (props) => {
         <span>{item.title}</span>
       </div>
       <button onClick={onDelete}>
-        <Delete />
+        <IcoDelete />
       </button>
     </Item>
   );

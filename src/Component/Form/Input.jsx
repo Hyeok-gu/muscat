@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { IcoAdd } from "../icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,8 +43,15 @@ const Input = (props) => {
   return {
     default: (
       <Wrapper>
-        <InputAtype type={form} onChange={onChange} value={value} placeholder={placeholder} />
-        <Button>+</Button>
+        <InputAtype
+          type={form}
+          onChange={onChange}
+          value={value}
+          placeholder={placeholder}
+        />
+        <Button>
+          <IcoAdd />
+        </Button>
       </Wrapper>
     ),
   }[type];

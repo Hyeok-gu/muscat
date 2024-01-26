@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Check, Checked } from './icons';
+import styled from "styled-components";
+import { IcoCheck, IcoChecked } from "./icons";
 
 const Button = styled.button`
   position: absolute;
@@ -10,6 +10,7 @@ const Button = styled.button`
   transition: all 0.3s linear;
   transform: translate(-50%, -50%) scale(1);
   user-select: none;
+  -webkit-tap-highlight-color: transparent !important;
   &:hover {
     transition: all 0.1s linear;
     transform: translate(-50%, -50%) scale(1.1);
@@ -23,7 +24,11 @@ const CheckBtn = (props) => {
   const { checked, type, onClick } = props;
 
   return {
-    default: <Button onClick={onClick}>{checked ? <Checked /> : <Check />}</Button>,
+    default: (
+      <Button onClick={onClick}>
+        {checked ? <IcoChecked /> : <IcoCheck />}
+      </Button>
+    ),
   }[type];
 };
 

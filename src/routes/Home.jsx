@@ -1,14 +1,14 @@
-import { useCallback, useState, useEffect } from 'react';
-import ToDoItem from '../Component/ToDoItem';
-import styled from 'styled-components';
-import Background from '../Component/Background';
-import Input from '../Component/Form/Input';
-import { Logo } from '../Component/icons';
+import { useCallback, useState, useEffect } from "react";
+import ToDoItem from "../Component/ToDoItem";
+import styled from "styled-components";
+import Background from "../Component/Background";
+import Input from "../Component/Form/Input";
+import { Logo } from "../Component/icons";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100dvh;
+  position: fixed;
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -21,18 +21,18 @@ const Frame = styled.div`
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   transition: all 0.3sec;
 `;
 
-const TiTle = styled.h1`
+const Title = styled.h1`
   font-size: 24px;
   color: #333;
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 70px;
+  top: 90px;
   left: 50%;
   transform: translateX(-50%) scaleX(100%) scaleY(100%);
   font-family: Gmarket sans;
@@ -68,10 +68,10 @@ const TiTle = styled.h1`
 const Form = styled.form`
   width: calc(100% - 32px);
   position: absolute;
-  bottom: 80px;
+  bottom: 40px;
 `;
 const List = styled.div`
-  margin-top: 160px;
+  margin-top: 190px;
   overflow-y: auto;
   height: calc(100% - 360px);
   mask-image: linear-gradient(rgb(0, 0, 0) 86%, transparent);
@@ -89,22 +89,26 @@ const List = styled.div`
 `;
 
 const Home = () => {
-  const [toDo, setToDo] = useState('');
-  const [list, setList] = useState(() => JSON.parse(window.localStorage.getItem('list')) || []);
-  const [point, setPoint] = useState(() => JSON.parse(window.localStorage.getItem('point')) || 0);
+  const [toDo, setToDo] = useState("");
+  const [list, setList] = useState(
+    () => JSON.parse(window.localStorage.getItem("list")) || []
+  );
+  const [point, setPoint] = useState(
+    () => JSON.parse(window.localStorage.getItem("point")) || 0
+  );
 
   // 스타일
   const [listUp, setListUp] = useState(false);
   // const [listDelete, setListDelete] = useState(false);
   const [iconAction, setIconAction] = useState(false);
-  const [backgroundType, setBackgroundType] = useState('default');
-  const [inputType, setInputType] = useState('default');
+  const [backgroundType, setBackgroundType] = useState("default");
+  const [inputType, setInputType] = useState("default");
 
   const onChange = (event) => setToDo(event.target.value);
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (toDo === '') {
+    if (toDo === "") {
       return;
     }
     setListUp(!listUp);
@@ -117,7 +121,7 @@ const Home = () => {
       ...currentList,
     ]);
     setTimeout(() => setListUp(false), 50);
-    setToDo('');
+    setToDo("");
   };
 
   const countPoint = () => {
@@ -157,29 +161,43 @@ const Home = () => {
   // };
 
   useEffect(() => {
-    window.localStorage.setItem('point', JSON.stringify(point));
+    window.localStorage.setItem("point", JSON.stringify(point));
   }, [point]);
 
   useEffect(() => {
-    window.localStorage.setItem('list', JSON.stringify(list));
+    window.localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
 
   return (
     <Container>
       <Frame>
-        <TiTle className={iconAction ? 'action' : null}>
+        <Title className={iconAction ? "action" : null}>
           {point}
           <Logo />
-        </TiTle>
+        </Title>
         <List>
-          <ul className={listUp ? 'active' : null}>
+          <ul className={listUp ? "active" : null}>
             {list.map((item, index) => (
-              <ToDoItem className={item.clear ? 'clear' : null} index={index} item={item} finish={item.clear} onClear={() => handleClear(index)} onDelete={() => handleDelete(index)} />
+              <ToDoItem
+                key={index}
+                className={item.clear ? "clear" : null}
+                index={index}
+                item={item}
+                finish={item.clear}
+                onClear={() => handleClear(index)}
+                onDelete={() => handleDelete(index)}
+              />
             ))}
           </ul>
         </List>
         <Form onSubmit={onSubmit}>
-          <Input type={inputType} form="text" onChange={onChange} value={toDo} placeholder="오늘의 할 일을 적어주세요"></Input>
+          <Input
+            type={inputType}
+            form="text"
+            onChange={onChange}
+            value={toDo}
+            placeholder="오늘의 할 일을 적어주세요"
+          ></Input>
         </Form>
       </Frame>
       {/* <h2>할 일 {list.length}</h2> */}
