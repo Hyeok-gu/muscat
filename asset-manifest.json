@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/muscat/static/css/main.1fec6c5a.css",
-    "main.js": "/muscat/static/js/main.ec48fc9d.js",
+    "main.css": "/muscat/static/css/main.f53ba362.css",
+    "main.js": "/muscat/static/js/main.53a69534.js",
     "static/media/GmarketSansBold.woff": "/muscat/static/media/GmarketSansBold.d7424b5213df834a6dcf.woff",
     "static/media/GmarketSansMedium.woff": "/muscat/static/media/GmarketSansMedium.84f61a83d44ae10d8d73.woff",
     "static/media/GmarketSansLight.woff": "/muscat/static/media/GmarketSansLight.8249d9d779ebb0333d5f.woff",
@@ -9,11 +9,11 @@
     "static/media/GmarketSansMedium.woff2": "/muscat/static/media/GmarketSansMedium.8e9eca0b5b938c057b55.woff2",
     "static/media/GmarketSansLight.woff2": "/muscat/static/media/GmarketSansLight.5b0b57b678f405027dbf.woff2",
     "index.html": "/muscat/index.html",
-    "main.1fec6c5a.css.map": "/muscat/static/css/main.1fec6c5a.css.map",
-    "main.ec48fc9d.js.map": "/muscat/static/js/main.ec48fc9d.js.map"
+    "main.f53ba362.css.map": "/muscat/static/css/main.f53ba362.css.map",
+    "main.53a69534.js.map": "/muscat/static/js/main.53a69534.js.map"
   },
   "entrypoints": [
-    "static/css/main.1fec6c5a.css",
-    "static/js/main.ec48fc9d.js"
+    "static/css/main.f53ba362.css",
+    "static/js/main.53a69534.js"
   ]
 }
