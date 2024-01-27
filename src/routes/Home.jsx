@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import ToDoItem from "../Component/ToDoItem";
 import styled from "styled-components";
 import Background from "../Component/Background";
@@ -7,11 +7,12 @@ import { Logo } from "../Component/icons";
 
 const Container = styled.div`
   width: 100%;
-  height: 100dvh;
-  position: fixed;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
-  overflow: hidden;
 `;
 
 const Frame = styled.div`
@@ -21,7 +22,7 @@ const Frame = styled.div`
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: relative;
   overflow: hidden;
   transition: all 0.3sec;
 `;
@@ -36,7 +37,7 @@ const Title = styled.h1`
   left: 50%;
   transform: translateX(-50%) scaleX(100%) scaleY(100%);
   font-family: Gmarket sans;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: -0.3px;
   transition: all 0.1s linear;
   color: #333;
@@ -59,7 +60,6 @@ const Title = styled.h1`
     }
     path {
       fill: #24d287;
-
       stroke: none;
     }
   }
@@ -67,14 +67,18 @@ const Title = styled.h1`
 
 const Form = styled.form`
   width: calc(100% - 32px);
+  max-width: 480px;
   position: absolute;
   bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 const List = styled.div`
-  margin-top: 190px;
+  margin-top: 180px;
   overflow-y: auto;
-  height: calc(100% - 360px);
-  mask-image: linear-gradient(rgb(0, 0, 0) 86%, transparent);
+  height: calc(100% - 330px);
+  mask-image: linear-gradient(transparent, rgb(0, 0, 0) 18%);
+  padding-top: 30px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -82,8 +86,23 @@ const List = styled.div`
   }
   ul {
     transition: all 0.1s linear;
+    li {
+      &:first-child {
+        margin-top: 60px;
+      }
+      &:last-child {
+        transform: translateY(0);
+        scale: 1;
+      }
+    }
     &.active {
-      transform: translateY(12px);
+      transform: translateY(-20px);
+      li {
+        &:last-child {
+          transform: translateY(10px);
+          scale: 0.95;
+        }
+      }
     }
   }
 `;
@@ -113,12 +132,12 @@ const Home = () => {
     }
     setListUp(!listUp);
     setList((currentList) => [
+      ...currentList,
       {
         title: toDo,
         clear: false,
         point: 1,
       },
-      ...currentList,
     ]);
     setTimeout(() => setListUp(false), 50);
     setToDo("");
@@ -159,6 +178,7 @@ const Home = () => {
   //     return;
   //   }
   // };
+  const scrollRef = useRef();
 
   useEffect(() => {
     window.localStorage.setItem("point", JSON.stringify(point));
@@ -168,43 +188,55 @@ const Home = () => {
     window.localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [onSubmit]);
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  };
+
   return (
-    <Container>
-      <Frame>
-        <Title className={iconAction ? "action" : null}>
-          {point}
-          <Logo />
-        </Title>
-        <List>
-          <ul className={listUp ? "active" : null}>
-            {list.map((item, index) => (
-              <ToDoItem
-                key={index}
-                className={item.clear ? "clear" : null}
-                index={index}
-                item={item}
-                finish={item.clear}
-                onClear={() => handleClear(index)}
-                onDelete={() => handleDelete(index)}
-              />
-            ))}
-          </ul>
-        </List>
-        <Form onSubmit={onSubmit}>
-          <Input
-            type={inputType}
-            form="text"
-            onChange={onChange}
-            value={toDo}
-            placeholder="오늘의 할 일을 적어주세요"
-          ></Input>
-        </Form>
-      </Frame>
-      {/* <h2>할 일 {list.length}</h2> */}
-      {/* <h2>포인트 {point}</h2> */}
-      {/* <button onClick={changeBgAtype}>배경 바꾸기 20포인트</button> */}
-      <Background type={backgroundType} />
-    </Container>
+    <>
+      <Container>
+        <Frame>
+          <Title className={iconAction ? "action" : null}>
+            {point}
+            <Logo />
+          </Title>
+          <List ref={scrollRef}>
+            <ul className={listUp ? "active" : null}>
+              {list.map((item, index) => (
+                <ToDoItem
+                  key={index}
+                  className={item.clear ? "clear" : null}
+                  index={index}
+                  item={item}
+                  finish={item.clear}
+                  onClear={() => handleClear(index)}
+                  onDelete={() => handleDelete(index)}
+                />
+              ))}
+            </ul>
+          </List>
+        </Frame>
+        {/* <h2>할 일 {list.length}</h2> */}
+        {/* <h2>포인트 {point}</h2> */}
+        {/* <button onClick={changeBgAtype}>배경 바꾸기 20포인트</button> */}
+        <Background type={backgroundType} />
+      </Container>
+      <Form onSubmit={onSubmit}>
+        <Input
+          type={inputType}
+          form="text"
+          onChange={onChange}
+          value={toDo}
+          placeholder="오늘의 할 일을 적어주세요"
+        ></Input>
+      </Form>
+    </>
   );
 };
 export default Home;

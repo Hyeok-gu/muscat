@@ -3,8 +3,8 @@ import { IcoDelete } from "./icons";
 import CheckBtn from "./CheckBtn";
 
 const Item = styled.li`
-  height: 56px;
-  padding: 0 20px 0 14px;
+  min-height: 30px;
+  padding: 10px 20px 10px 14px;
   border-radius: 18px;
   backdrop-filter: blur(20px);
   display: flex;
@@ -16,7 +16,7 @@ const Item = styled.li`
   transform: translateY(0);
   transition: all 0.1s linear;
   &.clear {
-    opacity: 0.4;
+    opacity: 0.5;
 
     .box {
       button {
@@ -32,17 +32,24 @@ const Item = styled.li`
     display: flex;
     align-items: center;
     position: relative;
-    padding-left: 32px;
+    padding: 0 10px 0 32px;
   }
   span {
     display: inline-block;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 12px;
+    font-family: Gmarket sans;
+    line-height: 19px;
+    font-weight: 500;
+    word-break: break-all;
+    white-space: break-spaces;
+    text-overflow: ellipsis;
   }
   button {
     padding: 0;
     user-select: none;
+    -webkit-tap-highlight-color: transparent !important;
   }
 `;
 

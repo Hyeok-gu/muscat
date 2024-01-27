@@ -8,15 +8,17 @@ const Wrapper = styled.div`
 const InputAtype = styled.input`
   width: 100%;
   height: 48px;
-  border-radius: 24px;
+  border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 30px;
+  padding: 0 48px 0 24px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
   transition: all 0.3s;
   backdrop-filter: blur(20px);
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: Gmarket sans;
+  font-weight: 500;
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);
   }
@@ -31,12 +33,14 @@ const InputAtype = styled.input`
   }
 `;
 const Button = styled.button`
+  padding: 0;
+  margin: 0;
   position: absolute;
-  right: 18px;
+  right: 22px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
   color: #fff;
+  -webkit-tap-highlight-color: transparent !important;
 `;
 const Input = (props) => {
   const { type, form, onChange, value, placeholder } = props;

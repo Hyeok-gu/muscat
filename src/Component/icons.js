@@ -44,7 +44,7 @@ export const IcoCheck = () => {
         data-name="그룹 1"
         transform="translate(-4054.099 -199.099)"
         fill="#000000"
-        opacity="0.2"
+        opacity="0.4"
       >
         <path
           id="합치기_1"
