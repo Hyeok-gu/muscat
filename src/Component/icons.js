@@ -8,24 +8,47 @@ export const Logo = () => {
       height="80"
       viewBox="0 0 80 80"
     >
-      <defs>
-        <linearGradient
-          id="linear-gradient"
-          x1="0.047"
-          y1="0.018"
-          x2="0.954"
-          y2="0.953"
-          gradientUnits="objectBoundingBox"
-        >
-          <stop offset="0%" stopColor="#3ceca0" />
-          <stop offset="10%" stopColor="#009f5c" />
-        </linearGradient>
-      </defs>
       <path
         id="패스_8"
         data-name="패스 8"
         d="M80,24.018A23.99,23.99,0,0,0,40,6.125,23.989,23.989,0,0,0,6.125,40,23.988,23.988,0,0,0,40,73.875,23.989,23.989,0,0,0,73.875,40,23.9,23.9,0,0,0,80,24.018"
-        fill="url(#linear-gradient)"
+        fill="#24d287"
+      />
+    </svg>
+  );
+};
+
+export const LogoPink = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+    >
+      <path
+        id="패스_8"
+        data-name="패스 8"
+        d="M80,24.018A23.99,23.99,0,0,0,40,6.125,23.989,23.989,0,0,0,6.125,40,23.988,23.988,0,0,0,40,73.875,23.989,23.989,0,0,0,73.875,40,23.9,23.9,0,0,0,80,24.018"
+        fill="#ff9696"
+      />
+    </svg>
+  );
+};
+
+export const LogoOrange = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+    >
+      <path
+        id="패스_8"
+        data-name="패스 8"
+        d="M80,24.018A23.99,23.99,0,0,0,40,6.125,23.989,23.989,0,0,0,6.125,40,23.988,23.988,0,0,0,40,73.875,23.989,23.989,0,0,0,73.875,40,23.9,23.9,0,0,0,80,24.018"
+        fill="#ffd460"
       />
     </svg>
   );

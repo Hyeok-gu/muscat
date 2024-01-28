@@ -77,6 +77,11 @@ export const ItemBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  &.active {
+    button {
+      border: 2px solid red;
+    }
+  }
 `;
 
 export const Item = styled.button`

@@ -1,10 +1,11 @@
-import { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState, useEffect, useRef, useMemo } from "react";
 import ToDoItem from "../Component/ToDoItem";
 import styled from "styled-components";
 import Background from "../Component/Background";
 import Input from "../Component/Form/Input";
 import { Link } from "react-router-dom";
-import { Logo } from "../Component/icons";
+import Muscat from "../Component/Logo";
+import { Logo, LogoPink, LogoOrange } from "../Component/icons";
 
 const Container = styled.div`
   width: 100%;
@@ -56,13 +57,7 @@ const Title = styled.h1`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    g {
-      opacity: 1;
-    }
-    path {
-      fill: #24d287;
-      stroke: none;
-    }
+    fill: #ffd460;
   }
 `;
 
@@ -114,7 +109,7 @@ const Home = () => {
     () => JSON.parse(window.localStorage.getItem("list")) || []
   );
   const [point, setPoint] = useState(
-    () => JSON.parse(window.localStorage.getItem("point")) || 0
+    () => JSON.parse(window.localStorage.getItem("point")) || 200
   );
 
   const [openStore, setOpenStore] = useState(false);
@@ -125,6 +120,10 @@ const Home = () => {
   const [iconAction, setIconAction] = useState(false);
   const [backgroundType, setBackgroundType] = useState("default");
   const [inputType, setInputType] = useState("default");
+
+  const [logoType, setLogoType] = useState(
+    () => JSON.parse(window.localStorage.getItem("muscatSelected")) || 0
+  );
 
   const onChange = (event) => setToDo(event.target.value);
 
@@ -177,14 +176,6 @@ const Home = () => {
     setOpenStore(!openStore);
   };
 
-  // const changeBgAtype = () => {
-  //   if (point >= 20) {
-  //     setBackgroundType("a");
-  //     setPoint(point - 20);
-  //   } else {
-  //     return;
-  //   }
-  // };
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -197,8 +188,7 @@ const Home = () => {
 
   useEffect(() => {
     scrollToBottom();
-    console.log("scrollToBottom");
-  }, [list]);
+  }, [listUp]);
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
@@ -215,7 +205,7 @@ const Home = () => {
           </Link>
           <Title className={iconAction ? "action" : null}>
             {point}
-            <Logo />
+            <Muscat type={logoType} />
           </Title>
           <List ref={scrollRef}>
             <ul className={listUp ? "active" : null}>
