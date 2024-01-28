@@ -1,33 +1,92 @@
 import styled from "styled-components";
 
-export const Store = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  border-radius: 24px 24px 0 0;
-  width: 100%;
-  padding: 24px;
-  height: 60dvh;
-  background-color: #fff;
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-`;
-export const Bg = styled.div`
-  position: fixed;
-  top: 0;
+export const Wrapper = styled.div`
   width: 100%;
   height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
 `;
+
+export const Frame = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+`;
+export const Title = styled.h2`
+  margin-top: 36px;
+  font-size: 20px;
+  font-family: Gmarket Sans;
+  font-weight: 900;
+`;
+
+export const BackBtn = styled.button`
+  width: 48px;
+  height: 48px;
+  background-color: blue;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+`;
+export const MyPoint = styled.span`
+  display: block;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  font-family: Gmarket Sans;
+  font-weight: 700;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`;
+
+export const TabBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+`;
+
 export const Tab = styled.button`
   min-width: 60px;
-  padding: 8px 10px;
-  font-size: 14px;
+  padding: 8px 14px;
+  font-size: 16px;
   border-radius: 40px;
   background: #f8f8f8;
-  margin-right: 8px;
+  margin-right: 12px;
+  &:last-child {
+    margin-right: 0;
+  }
   &.active {
     background: #333333;
     color: #f8f8f8;
   }
+`;
+
+export const ItemList = styled.div`
+  width: 100%;
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+`;
+export const ItemBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Item = styled.button`
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f8f8f8;
+  border-radius: 24px;
+`;
+export const Price = styled.span`
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
 `;

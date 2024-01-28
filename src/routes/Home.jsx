@@ -1,10 +1,10 @@
-import { useCallback, useState, useEffect, useRef, useMemo } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import ToDoItem from "../Component/ToDoItem";
 import styled from "styled-components";
 import Background from "../Component/Background";
 import Input from "../Component/Form/Input";
+import { Link } from "react-router-dom";
 import { Logo } from "../Component/icons";
-import * as S from "../Store";
 
 const Container = styled.div`
   width: 100%;
@@ -117,27 +117,7 @@ const Home = () => {
     () => JSON.parse(window.localStorage.getItem("point")) || 0
   );
 
-  const tabMenu = [
-    {
-      id: 0,
-      name: "머스캣",
-    },
-    {
-      id: 1,
-      name: "리스트",
-    },
-    {
-      id: 2,
-      name: "타이핑",
-    },
-    {
-      id: 3,
-      name: "배경",
-    },
-  ];
-
   const [openStore, setOpenStore] = useState(false);
-  const [activeTab, setActiveTab] = useState(tabMenu[0].id);
 
   // 스타일
   const [listUp, setListUp] = useState(false);
@@ -197,10 +177,6 @@ const Home = () => {
     setOpenStore(!openStore);
   };
 
-  const handleActiveTab = (tabId) => {
-    setActiveTab(tabId);
-  };
-
   // const changeBgAtype = () => {
   //   if (point >= 20) {
   //     setBackgroundType("a");
@@ -211,13 +187,13 @@ const Home = () => {
   // };
   const scrollRef = useRef();
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("point", JSON.stringify(point));
-  // }, [point]);
+  useEffect(() => {
+    window.localStorage.setItem("point", JSON.stringify(point));
+  }, [point]);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("list", JSON.stringify(list));
-  // }, [list]);
+  useEffect(() => {
+    window.localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   useEffect(() => {
     scrollToBottom();
@@ -229,13 +205,14 @@ const Home = () => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   };
-  console.log("tabMenu", tabMenu);
 
   return (
     <>
       <Container>
         <Frame>
-          <button onClick={handleStore}>상점</button>
+          <Link to="/store">
+            <button onClick={handleStore}>상점</button>
+          </Link>
           <Title className={iconAction ? "action" : null}>
             {point}
             <Logo />
@@ -270,27 +247,6 @@ const Home = () => {
           placeholder="오늘의 할 일을 적어주세요"
         ></Input>
       </Form>
-      {openStore && (
-        <div>
-          <S.Store>
-            {tabMenu.map((item) => {
-              const active = item.id === activeTab ? "active" : "";
-              return (
-                <S.Tab
-                  className={active}
-                  key={item.id}
-                  onClick={() => {
-                    handleActiveTab(item.id);
-                  }}
-                >
-                  {item.name}
-                </S.Tab>
-              );
-            })}
-          </S.Store>
-          <S.Bg />
-        </div>
-      )}
     </>
   );
 };
