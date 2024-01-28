@@ -178,3 +178,6 @@ body {
   width: 100%;
   overflow: hidden;
 }
+button {
+  -webkit-tap-highlight-color: transparent !important;
+}

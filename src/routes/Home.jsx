@@ -5,7 +5,7 @@ import Background from "../Component/Background";
 import Input from "../Component/Form/Input";
 import { Link } from "react-router-dom";
 import Muscat from "../Component/Logo";
-import { Logo, LogoPink, LogoOrange } from "../Component/icons";
+import { IcoStore } from "../Component/icons";
 
 const Container = styled.div`
   width: 100%;
@@ -31,7 +31,7 @@ const Frame = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  color: #333;
+  color: #222;
   font-weight: bold;
   text-align: center;
   position: absolute;
@@ -42,7 +42,7 @@ const Title = styled.h1`
   font-weight: 700;
   letter-spacing: -0.3px;
   transition: all 0.1s linear;
-  color: #333;
+  color: #222;
   &.action {
     transition: all 0.1s linear;
     transform: translateX(-50%) scaleX(90%) scaleY(110%);
@@ -65,7 +65,7 @@ const Form = styled.form`
   width: calc(100% - 32px);
   max-width: 480px;
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -103,6 +103,17 @@ const List = styled.div`
   }
 `;
 
+const StoreBtn = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Home = () => {
   const [toDo, setToDo] = useState("");
   const [list, setList] = useState(
@@ -119,7 +130,9 @@ const Home = () => {
   // const [listDelete, setListDelete] = useState(false);
   const [iconAction, setIconAction] = useState(false);
   const [backgroundType, setBackgroundType] = useState("default");
-  const [inputType, setInputType] = useState("default");
+  const [inputType, setInputType] = useState(
+    () => JSON.parse(window.localStorage.getItem("inputSelected")) || 0
+  );
 
   const [logoType, setLogoType] = useState(
     () => JSON.parse(window.localStorage.getItem("muscatSelected")) || 0
@@ -200,9 +213,6 @@ const Home = () => {
     <>
       <Container>
         <Frame>
-          <Link to="/store">
-            <button onClick={handleStore}>상점</button>
-          </Link>
           <Title className={iconAction ? "action" : null}>
             {point}
             <Muscat type={logoType} />
@@ -222,6 +232,11 @@ const Home = () => {
               ))}
             </ul>
           </List>
+          <Link to="/store">
+            <StoreBtn onClick={handleStore}>
+              <IcoStore />
+            </StoreBtn>
+          </Link>
         </Frame>
         {/* <h2>할 일 {list.length}</h2> */}
         {/* <h2>포인트 {point}</h2> */}

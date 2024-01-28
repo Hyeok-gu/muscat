@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import * as S from "../Store";
-import { Logo, LogoPink, LogoOrange } from "../Component/icons";
+import Input from "../Component/Form/Input";
+import { Logo, LogoPink, LogoOrange, IcoBackPage } from "../Component/icons";
 const Store = (props) => {
   // const {} = props;
 
@@ -35,13 +36,34 @@ const Store = (props) => {
       id: 1,
       name: "pink",
       buy: false,
-      price: 20,
+      price: 10,
     },
     {
       id: 2,
-      name: "blue",
+      name: "orange",
       buy: false,
-      price: 40,
+      price: 10,
+    },
+  ];
+
+  const inputItemDefault = [
+    {
+      id: 0,
+      name: "defalut",
+      buy: true,
+      price: 0,
+    },
+    {
+      id: 1,
+      name: "pink",
+      buy: false,
+      price: 10,
+    },
+    {
+      id: 2,
+      name: "orange",
+      buy: false,
+      price: 10,
     },
   ];
 
@@ -63,6 +85,24 @@ const Store = (props) => {
     []
   );
 
+  const inputDesigns = useMemo(
+    () => [
+      {
+        id: 0,
+        design: <Input type="0" disabled />,
+      },
+      {
+        id: 1,
+        design: <Input type="1" disabled />,
+      },
+      {
+        id: 2,
+        design: <Input type="2" disabled />,
+      },
+    ],
+    []
+  );
+
   const [activeTab, setActiveTab] = useState(tabMenu[0].id);
   const [myPoint, setMyPoint] = useState(
     () => JSON.parse(window.localStorage.getItem("point")) || 0
@@ -76,31 +116,52 @@ const Store = (props) => {
     () => JSON.parse(window.localStorage.getItem("muscatSelected")) || 0
   );
 
-  // 머스캣 디자인 리스트 불러오기
-  // const muscatList = useMemo(() => {
-  //   return muscatItem.map((item) => {
-  //     const active = item.id === muscatSelected ? "active" : "";
-  //     return (
-  //       <S.ItemBox className={active} key={item.id}>
-  //         <S.Item onClick={() => handleActiveMuscat(item)}>
-  //           {item.desigh}
-  //         </S.Item>
-  //         <S.Price>{item.price}</S.Price>
-  //       </S.ItemBox>
-  //     );
-  //   });
-  // }, [muscatSelected]);
+  const [inputItem, setInputItem] = useState(
+    () =>
+      JSON.parse(window.localStorage.getItem("inputList")) || inputItemDefault
+  );
 
+  const [inputSelected, setInputSelected] = useState(
+    () => JSON.parse(window.localStorage.getItem("inputSelected")) || 0
+  );
+
+  //머스캣 리스트 퍼블리싱
   const listRender = (list) => {
     return list.map((item) => (
       <S.ItemBox
         key={item.id}
-        className={item.id === muscatSelected ? "active" : ""}
+        className={
+          item.id === muscatSelected ? "active" : !item.buy ? "buy" : ""
+        }
       >
         <S.Item onClick={() => handleActiveMuscat(item)}>
           {muscatDesigns[item.id].design}
         </S.Item>
-        <S.Price>{item.price}</S.Price>
+        <S.Price>
+          <Logo />
+          <span>{item.price}</span>
+        </S.Price>
+      </S.ItemBox>
+    ));
+  };
+
+  //인풋 리스트 퍼블리싱
+  const inputItemRender = (list) => {
+    return list.map((item) => (
+      <S.ItemBox
+        key={item.id}
+        className={
+          item.id === inputSelected ? "active" : !item.buy ? "buy" : ""
+        }
+      >
+        <S.InputItem onClick={() => handleActiveInput(item)}>
+          <S.TouchZone />
+          {inputDesigns[item.id].design}
+        </S.InputItem>
+        <S.Price>
+          <Logo />
+          <span>{item.price}</span>
+        </S.Price>
       </S.ItemBox>
     ));
   };
@@ -126,8 +187,31 @@ const Store = (props) => {
       });
       setMyPoint((prevPoint) => prevPoint - item.price);
       setMuscatSelected(item.id);
+      alert("구입 완료!");
     } else {
-      alert("포인트 부족혀~");
+      alert("포인트가 부족해요!");
+    }
+  };
+
+  //인풋 디자인 선택 기능
+  const handleActiveInput = (item) => {
+    if (item.buy) {
+      setInputSelected(item.id);
+    } else if (myPoint >= item.price && !item.buy) {
+      //인풋아이템 구입하고 객체들 업데이트
+      // 변수에 인풋 리스트 가져와 업데이트
+      setInputItem((prevInputItem) => {
+        const updatedInputItem = prevInputItem.map((input) =>
+          input.id === item.id ? { ...input, buy: true } : input
+        );
+        // 선택한 아이템의 buy 값 업데이트 되고, 그 리스트를 inputItem에 저장,
+        return updatedInputItem;
+      });
+      setMyPoint((prevPoint) => prevPoint - item.price);
+      setInputSelected(item.id);
+      alert("구입 완료!");
+    } else {
+      alert("포인트가 부족해요!");
     }
   };
 
@@ -135,6 +219,10 @@ const Store = (props) => {
   useEffect(() => {
     window.localStorage.setItem("muscatList", JSON.stringify(muscatItem));
   }, [muscatItem]);
+
+  useEffect(() => {
+    window.localStorage.setItem("inputList", JSON.stringify(inputItem));
+  }, [inputItem]);
 
   useEffect(() => {
     window.localStorage.setItem("point", JSON.stringify(myPoint));
@@ -147,14 +235,26 @@ const Store = (props) => {
     );
   }, [muscatSelected]);
 
+  useEffect(() => {
+    window.localStorage.setItem("inputSelected", JSON.stringify(inputSelected));
+  }, [inputSelected]);
+
   return (
     <S.Wrapper>
       <S.Frame>
-        <Link to="/">
-          <S.BackBtn>뒤로가기</S.BackBtn>
-        </Link>
-        <S.MyPoint>Point {myPoint}</S.MyPoint>
-        <S.Title>상점</S.Title>
+        <S.TopArea>
+          <Link to="/">
+            <S.BackBtn>
+              <IcoBackPage />
+            </S.BackBtn>
+          </Link>
+
+          <S.Title>상점</S.Title>
+          <S.MyPoint>
+            <Logo />
+            <span>{myPoint}</span>
+          </S.MyPoint>
+        </S.TopArea>
         <S.TabBox>
           {tabMenu.map((item) => {
             const active = item.id === activeTab ? "active" : "";
@@ -173,6 +273,8 @@ const Store = (props) => {
         </S.TabBox>
         {activeTab === 0 ? (
           <S.ItemList>{listRender(muscatItem)}</S.ItemList>
+        ) : activeTab === 2 ? (
+          <S.ItemInputList>{inputItemRender(inputItem)}</S.ItemInputList>
         ) : null}
       </S.Frame>
     </S.Wrapper>
