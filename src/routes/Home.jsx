@@ -65,7 +65,7 @@ const Form = styled.form`
   width: calc(100% - 32px);
   max-width: 480px;
   position: absolute;
-  bottom: 20px;
+  bottom: 26px;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -107,8 +107,8 @@ const StoreBtn = styled.button`
   position: absolute;
   top: 20px;
   right: 16px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +120,7 @@ const Home = () => {
     () => JSON.parse(window.localStorage.getItem("list")) || []
   );
   const [point, setPoint] = useState(
-    () => JSON.parse(window.localStorage.getItem("point")) || 200
+    () => JSON.parse(window.localStorage.getItem("point")) || 0
   );
 
   const [openStore, setOpenStore] = useState(false);

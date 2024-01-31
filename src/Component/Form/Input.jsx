@@ -140,7 +140,7 @@ const Input = (props) => {
           disabled={disabled}
         />
         <Button>
-          <IcoAdd />
+          <IcoAddWhite />
         </Button>
       </Wrapper>
     ),
